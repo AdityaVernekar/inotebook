@@ -81,10 +81,10 @@ router.post(
 );
 // ROUTE 3: get user
  router.post('/getuser',fetchuser,(req,res)=>{
-   const {_id} = req.user;
-    User.findById(_id).select('-password').then((user)=>{
-      res.json(user);
-    }).catch((err)=>console.log(err));
+  const {_id} = req.user;
+  User.findOne({_id}).select('-password').then((user)=>{
+    res.json(user);
+  }).catch((err)=>console.log(err));
     
  })
 module.exports = router;
