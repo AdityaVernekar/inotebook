@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Signup = () => {
+const Signup = (props) => {
   const [Credentials, setCredentials] = useState({
     email: "",
     name: "",
@@ -35,12 +35,14 @@ const Signup = () => {
     if (json.success) {
       localStorage.setItem("token", json.token);
       window.location = "/";
+      props.showAlert("Acccount Created Successfully", "success");
     } else {
-      alert("Invalid Credentials");
+      props.showAlert("Invalid Credentials", "danger");
     }
   };
   return (
     <div>
+      <h2>SignUp here :Create an account now!</h2>
       <form onSubmit={handleSignup}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">

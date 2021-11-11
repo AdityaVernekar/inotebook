@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 
-const Login = () => {
+const Login = (props) => {
+  let history = useHistory();
   const [Credentials, setCredentials] = useState({ email: "", password: "" });
 
   const onChange = (e) => {
@@ -19,13 +21,15 @@ const Login = () => {
     console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.token);
-      window.location = "/";
+      history.push("/");
+      props.showAlert("Logged in successfully", "success");
     } else {
-      alert("Invalid Credentials");
+      props.showAlert("Invalid Credentials", "danger");
     }
   };
   return (
     <div>
+      <h2>Login to iNoteBook</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">

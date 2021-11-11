@@ -15,6 +15,7 @@ const Noteitem = (props) => {
             className="fas fa-trash-alt mx-2"
             onClick={() => {
               deleteNote(note._id);
+              props.showAlert("Note deleted successfully", "primary");
             }}
           ></i>
           <i
@@ -24,7 +25,7 @@ const Noteitem = (props) => {
             }}
           ></i>
           <span
-            class="badge bg-secondary"
+            className="badge bg-secondary"
             style={{ position: "absolute", right: "13px", bottom: "6px" }}
           >
             {note.tag}
